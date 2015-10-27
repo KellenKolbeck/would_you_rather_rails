@@ -1,6 +1,7 @@
 <% @questions.each do |question| %>
   <ul>
-    <%= question.title %> | <%= link_to "Edit", edit_question_path(question) %> | <%= link_to "Delete", question_path(question), data: { confirm: "Are you sure?", method: "delete" } %>
+    <%= question.title %> | <%= link_to "Edit", edit_question_path(question), id:"edit-question-button", remote: true %>
+   | <%= link_to "Delete", question_path(question), data: { confirm: "Are you sure?", method: "delete" } %>
     <br>
     <li id="optionA">
       <div> <%= question.optionA %> </div>
@@ -12,4 +13,4 @@
 <% end %>
 
 
-<%= link_to "Add a question", new_question_path %>
+<%= link_to "Add a question", new_question_path, id:"new-question-button", remote: true %>
