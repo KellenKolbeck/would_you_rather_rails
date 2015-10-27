@@ -27,10 +27,20 @@ class QuestionsController < ApplicationController
 
   def update
     @question = Question.find(params[:id])
-    if @question.update(question_params)
+    if params[:vote] == "A"
+      @question.voteA += 1
+      @question.save
+      redirect_to questions_path
+    elsif params[:vote] == "B"
+      @question.voteB += 1
+      @question.save
       redirect_to questions_path
     else
-      render 'edit'
+      if @question.update(question_params)
+        redirect_to questions_path
+      else
+        render 'edit'
+      end
     end
   end
 

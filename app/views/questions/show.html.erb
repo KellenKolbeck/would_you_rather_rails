@@ -1,1 +1,15 @@
 <h2><%= @question.title %></h2>
+<h3><%= @question.optionA %>? | OR | <%= @question.optionB %>?</h3>
+
+
+<h3>Comments on this question:</h3>
+<ul>
+  <% @question.comments.each do |comment| %>
+    <li><%= comment.comment_content %>
+    |  <%= link_to "Edit", edit_question_comment_path(@question, comment), id: "edit_comment", remote: true %>
+    |  <%= link_to "Delete", question_comment_path(@question, comment), data: { confirm: "Are you sure?", method: "delete"} %> |</li>
+
+  <% end %>
+</ul>
+
+<%= link_to "New Comment", new_question_comment_path(@question), id:"new_comment", remote: true %>
