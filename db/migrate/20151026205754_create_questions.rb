@@ -4,8 +4,8 @@ class CreateQuestions < ActiveRecord::Migration
       t.column :title, :string
       t.column :optionA , :string
       t.column :optionB, :string
-      t.column :voteA, :integer
-      t.column :voteB, :integer
+      t.column :vote_a, :integer
+      t.column :vote_b, :integer
 
       t.timestamps
     end

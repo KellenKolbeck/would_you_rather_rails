@@ -2,6 +2,8 @@
   <h1>Would you rather lather...?</h1>
 </div>
 
+<h4><%= link_to "Add a question", new_question_path, id:"new-question-button", remote: true %></h4>
+
 <% @questions.order(created_at: :desc).each do |question| %>
   <div class="container">
     <ul>
@@ -10,22 +12,18 @@
      | <%= link_to "Delete", question_path(question), data: { confirm: "Are you sure?", method: "delete" } %>
       <br>
       <li>
-        <div id="voteA"> <h3><%=link_to question.optionA, question_path(question, vote: "A"), data: {method:"patch"} %></h3> </div>
+        <div> <h3><%=link_to question.optionA, question_path(question, vote: "A"), data: {method:"patch"}, id:"vote_a", remote: true %></h3> </div>
       </li>
       <h4>OR</h4>
       <li>
-        <div id="voteB"> <h3><%=link_to question.optionB, question_path(question, vote: "B"), data: {method:"patch"} %></h3> </div>
+        <div id="vote_b"> <h3><%=link_to question.optionB, question_path(question, vote: "B"), data: {method:"patch"} %></h3> </div>
       </li>
     </ul>
     <div id="votes">
-      Total votes : <%= question.optionA %> : <%= question.voteA %> | <%= question.optionB %> : <%= question.voteB %>
-      <%= pie_chart Question.group(:voteA, :voteB).count %>
+      Total votes : <%= question.optionA %> : <%= question.vote_a %> | <%= question.optionB %> : <%= question.vote_b %>
     </div>
     <br>
   </div>
 <% end %>
 
 <br><br>
-
-
-<h4><%= link_to "Add a question", new_question_path, id:"new-question-button", remote: true %></h4>

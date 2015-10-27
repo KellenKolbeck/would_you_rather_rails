@@ -28,11 +28,11 @@ class QuestionsController < ApplicationController
   def update
     @question = Question.find(params[:id])
     if params[:vote] == "A"
-      @question.voteA += 1
+      @question.vote_a += 1
       @question.save
       redirect_to questions_path
     elsif params[:vote] == "B"
-      @question.voteB += 1
+      @question.vote_b += 1
       @question.save
       redirect_to questions_path
     else
@@ -41,6 +41,10 @@ class QuestionsController < ApplicationController
       else
         render 'edit'
       end
+    #   respond_to do |format|
+    #     format.html { redirect_to tasks_url }
+    #     format.js
+    # end
     end
   end
 
@@ -53,6 +57,6 @@ class QuestionsController < ApplicationController
 
   private
     def question_params
-      params.require(:question).permit(:title, :optionA, :optionB, :voteA, :voteB)
+      params.require(:question).permit(:title, :optionA, :optionB, :vote_a, :vote_b)
     end
 end
