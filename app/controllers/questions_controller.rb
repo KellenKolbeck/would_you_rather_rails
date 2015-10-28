@@ -30,11 +30,11 @@ class QuestionsController < ApplicationController
     if params[:vote] == "A"
       @question.vote_a += 1
       @question.save
-      redirect_to questions_path
+      # redirect_to questions_path
     elsif params[:vote] == "B"
       @question.vote_b += 1
       @question.save
-      redirect_to questions_path
+      # redirect_to questions_path
     else
       if @question.update(question_params)
         redirect_to questions_path
